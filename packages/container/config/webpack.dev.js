@@ -1,7 +1,6 @@
 //Merge is used for merging webpack files 
 //In this case, to merge commmon and dev files 
 const {merge } = require('webpack-merge'); 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin'); 
 //Common config 
 const commonConfig = require('./webpack.common'); 
@@ -37,9 +36,6 @@ const devConfig = {
       //packageJson.dependencies will contain all the dependencies of this project. 
       //which is exactly what we need. 
       shared: packageJson.dependencies,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
     }),
   ],
 };

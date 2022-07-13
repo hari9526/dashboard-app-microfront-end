@@ -1,7 +1,12 @@
+
+//We need HtmlWebpackPlugin in both dev and prod
+//so we add it in the common. 
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 module.exports = {
   module: {
     rules: [
-      //Inside the rules array, we define loader. 
+      //Inside the rules array, we define loader.
       //Loader tells the webpack how to handle certain files
       //when they are imported into our projects.
       {
@@ -19,4 +24,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
