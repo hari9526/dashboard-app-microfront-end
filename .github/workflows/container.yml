@@ -16,7 +16,7 @@ on:
 
 defaults: 
   run: 
-    working- : packages/container
+    working-directory: packages/container
 
 
 jobs: 
