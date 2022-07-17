@@ -10,6 +10,7 @@ const prodConfig = {
   mode: "production", //This will minify and optimize the build for production
   output: {
     filename: "[name].[contenthash].js",
+    publicPath : '/container/latest/', 
   },
   plugins: [
     new ModuleFederationPlugin({
