@@ -17,9 +17,7 @@ const devConfig = {
   mode: "development",
   devServer: {
     port: 8080,
-    historyApiFallback: {
-      index: "index.html",
-    },
+    historyApiFallback: true,
   },
   plugins: [
     new ModuleFederationPlugin({
@@ -33,8 +31,8 @@ const devConfig = {
       //But this can be tedious when we work with multiple packages.
       //To avoid this, we can import the package names from package.json and
       //specify them. So, it's easier this way.
-      //packageJson.dependencies will contain all the dependencies of this project. 
-      //which is exactly what we need. 
+      //packageJson.dependencies will contain all the dependencies of this project.
+      //which is exactly what we need.
       shared: packageJson.dependencies,
     }),
   ],
