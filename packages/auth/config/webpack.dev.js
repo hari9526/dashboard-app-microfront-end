@@ -17,15 +17,15 @@ const packageJson = require('../package.json');
 const devConfig = {
   mode: "development",
   devServer: {
-    port: 8081,
+    port: 8082,
     historyApiFallback: true,
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: "marketing",
+      name: "auth",
       filename: "remoteEntry.js",
       exposes: {
-        "./MarketingApp": "./src/bootstrap",
+        "./AuthApp": "./src/bootstrap",
       },
       shared : packageJson.dependencies, 
     }),
