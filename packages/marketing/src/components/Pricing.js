@@ -175,16 +175,16 @@ export default function Pricing() {
               item
               key={tier.title}
               xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
+              sm={tier.title === "Enterprise" ? 12 : 6}
               md={4}
             >
               <Card>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  subheaderTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
+                  titleTypographyProps={{ align: "center" }}
+                  subheaderTypographyProps={{ align: "center" }}
+                  action={tier.title === "Pro" ? <StarIcon /> : null}
                   className={classes.cardHeader}
                 />
                 <CardContent>
@@ -226,7 +226,7 @@ export default function Pricing() {
       </Container>
       {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
+        <Grid container spacing={4} justifyContent="space-evenly">
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
               <Typography variant="h6" color="textPrimary" gutterBottom>

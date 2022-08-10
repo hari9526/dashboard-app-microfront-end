@@ -17,6 +17,10 @@ const generateClassName = createGenerateClassName({
 
 export default () => {
   return (
+    // Browser router is use Browser history where 
+    // the url in the address is utilizied. 
+    // In microfront end architecture we use browser history only
+    // inside the container app. 
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <div>
