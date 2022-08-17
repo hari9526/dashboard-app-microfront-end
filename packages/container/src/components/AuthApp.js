@@ -8,6 +8,8 @@ export default () => {
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      //Setting initial path for the memory history.
+      initialPath: history.location.pathname,
       //This is the callback function passed to the marketing app to
       //update navigation details so that memory history and browser history
       //is in sync.
@@ -18,6 +20,7 @@ export default () => {
       //object as nextPathname
       //that's what happens in
       //{ pathname: nextPathname }
+
       onNavigate: ({ pathname: nextPathname }) => {
         //Since we are updating the browser history and memory history
         //Whenever they are getting updated, it can get into a inifinite loop
@@ -27,8 +30,7 @@ export default () => {
         const { pathname } = history.location;
         //We are telling the history to navigate to
         //the given path if it's not the current pathname
-        if (pathname != nextPathname) 
-            history.push(pathname);
+        if (pathname != nextPathname) history.push(pathname);
       },
     });
 

@@ -8,6 +8,8 @@ export default () => {
 
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
+      //Setting initial path for the memory history.
+      initialPath: history.location.pathname,
       //This is the callback function passed to the marketing app to
       //update navigation details so that memory history and browser history
       //is in sync.

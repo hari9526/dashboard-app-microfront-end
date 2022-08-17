@@ -9,7 +9,7 @@ import App from "./App";
 //Mount function to start up the app
 //onNavigate: Used for syncing browser history in container 
 //and memory history in marketing app 
-const mount = (el, { onNavigate, defaultHistory }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath}) => {
   //We are gonna pass the history from here to the App
   //component
   //If we are having defaultHistory, we'll use that. 
@@ -17,7 +17,11 @@ const mount = (el, { onNavigate, defaultHistory }) => {
   //the marketing app in isolation. defaultHistory will be there 
   //only in dev environment. 
   //Thus we can have browser history when we run marketing app in isolation. 
-  const history = defaultHistory || createMemoryHistory();
+  //We are also setting an initial path for the memory history. 
+  //Otherwise it won't get updated when we first navigate. 
+  const history = defaultHistory || createMemoryHistory({
+    initialEntries : [initialPath]
+  });
   //Whenever navigation occurs listen method will
   //call the method provided as a parameter. 
   if(onNavigate)
