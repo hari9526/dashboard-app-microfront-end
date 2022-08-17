@@ -2,7 +2,7 @@
 //lazy is a react function.
 //They are used for lazy loading to avoid
 //loading up the components not required.
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
   StylesProvider,
@@ -29,6 +29,8 @@ const generateClassName = createGenerateClassName({
 });
 
 export default () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   return (
     // Browser router is use Browser history where
     // the url in the address is utilizied.
@@ -37,10 +39,20 @@ export default () => {
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <div>
-          <Header />
-          <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            onSignOut={() => {debugger; setIsSignedIn(false)}}
+            isSignedIn={isSignedIn}
+          />
+          <Suspense fallback={<Progress />}>
             <Switch>
-              <Route path="/auth" component={AuthLazy} />
+              <Route path="/auth">
+                <AuthLazy
+                  onSignin={() => {
+                    debugger;
+                    setIsSignedIn(true);
+                  }}
+                />
+              </Route>
               <Route path="/" component={MarketingLazy} />
             </Switch>
           </Suspense>
