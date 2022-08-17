@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core/styles";
 
 import Header from "./components/Header";
+import Progress from "./components/Progress";
 
 //We are gonna do lazy loading of the following
 // import MarketingApp from "./components/MarketingApp";
