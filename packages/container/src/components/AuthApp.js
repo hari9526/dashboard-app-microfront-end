@@ -13,18 +13,22 @@ export default () => {
       //is in sync.
       //onNavigate has a parameter called location
       //which contains all the location info
-      onNavigate: (location) => {
-        //Since we are updating the browser history and memory history based
+      //Location is an object and we need the property called pathname from that object
+      //For that we are destructuring the object and we are renaming that
+      //object as nextPathname
+      //that's what happens in
+      //{ pathname: nextPathname }
+      onNavigate: ({ pathname: nextPathname }) => {
+        //Since we are updating the browser history and memory history
         //Whenever they are getting updated, it can get into a inifinite loop
         //To avoid this we need to add a check.
         //Update the history only when it's not the current value.
         //Gives the current pathname in browser history
         const { pathname } = history.location;
-        //Gives the current pathname form the memory history
-        const nextPathname = location.location.pathname;
         //We are telling the history to navigate to
         //the given path if it's not the current pathname
-        if (pathname != nextPathname) history.push(pathname);
+        if (pathname != nextPathname) 
+            history.push(pathname);
       },
     });
 
