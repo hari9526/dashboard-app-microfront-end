@@ -1,12 +1,23 @@
-import React from "react";
+//Suspense is a react component and
+//lazy is a react function.
+//They are used for lazy loading to avoid
+//loading up the components not required.
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
-import MarketingApp from "./components/MarketingApp";
-import AuthApp from "./components/AuthApp";
 import {
   StylesProvider,
   createGenerateClassName,
 } from "@material-ui/core/styles";
+
+import Header from "./components/Header";
+
+//We are gonna do lazy loading of the following
+// import MarketingApp from "./components/MarketingApp";
+// import AuthApp from "./components/AuthApp";
+
+//Lazy loading.
+const MarketingLazy = lazy(() => import("./components/MarketingApp"));
+const AuthLazy = lazy(() => import("./components/AuthApp"));
 
 //Instead of creating classnames with jss, like jss1, jss2,
 //we are generating it as ma1, ma2 for the production site
@@ -18,18 +29,20 @@ const generateClassName = createGenerateClassName({
 
 export default () => {
   return (
-    // Browser router is use Browser history where 
-    // the url in the address is utilizied. 
+    // Browser router is use Browser history where
+    // the url in the address is utilizied.
     // In microfront end architecture we use browser history only
-    // inside the container app. 
+    // inside the container app.
     <BrowserRouter>
       <StylesProvider generateClassName={generateClassName}>
         <div>
           <Header />
-          <Switch>
-            <Route path="/auth" component={AuthApp}/>
-            <Route path="/" component={MarketingApp}/>
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route path="/auth" component={AuthLazy} />
+              <Route path="/" component={MarketingLazy} />
+            </Switch>
+          </Suspense>
         </div>
       </StylesProvider>
     </BrowserRouter>
