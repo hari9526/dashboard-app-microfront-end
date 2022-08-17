@@ -16,6 +16,15 @@ const packageJson = require('../package.json');
 
 const devConfig = {
   mode: "development",
+  output: {
+    //We are specifying the public path here
+    //because we need to access http://localhost:8082/main.js
+    //in index.html. If this is not provided, then
+    //http://localhost:8082/auth/singin/main.js will be called
+    //in signup page instead of http://localhost:8082/main.js
+    //To avoid this we need to use this. 
+    publicPath: "http://localhost:8082/",
+  },
   devServer: {
     port: 8082,
     historyApiFallback: true,
@@ -27,7 +36,7 @@ const devConfig = {
       exposes: {
         "./AuthApp": "./src/bootstrap",
       },
-      shared : packageJson.dependencies, 
+      shared: packageJson.dependencies,
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
