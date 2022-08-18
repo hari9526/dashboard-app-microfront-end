@@ -5,8 +5,8 @@ import {
   createGenerateClassName,
 } from "@material-ui/core/styles";
 
-import SignIn from './components/Signin'; 
-import SignUp from './components/Signup'; 
+import SignIn from "./components/Signin";
+import SignUp from "./components/Signup";
 
 //Instead of creating classnames with jss, like jss1, jss2,
 //we are generating it as ma1, ma2 for the production site
@@ -16,15 +16,18 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "au",
 });
 
-export default ({ history }) => {
+export default ({ history, onSignIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route path="/auth/signin" component={SignIn} />
-            <Route path="/auth/signup" component={SignUp} />
-
+            <Route path="/auth/signin">
+              <SignIn onSignIn={onSignIn} />
+            </Route>
+            <Route path="/auth/signup">
+              <SignUp onSignIn={onSignIn} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>

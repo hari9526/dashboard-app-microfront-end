@@ -2,7 +2,7 @@ import { mount } from "auth/AuthApp";
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({onSignIn}) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -32,6 +32,12 @@ export default () => {
         //the given path if it's not the current pathname
         if (pathname != nextPathname) history.push(pathname);
       },
+      //Authentication. 
+      //This is a callback function passed to auth and 
+      //it updates whether the user is signed in or not. 
+      //Then that is passed to all other apps for authentication .
+      onSignIn,
+
     });
 
     history.listen(onParentNavigate);

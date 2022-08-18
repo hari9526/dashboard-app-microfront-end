@@ -9,7 +9,7 @@ import App from "./App";
 //Mount function to start up the app
 //onNavigate: Used for syncing browser history in container 
 //and memory history in marketing app 
-const mount = (el, { onNavigate, defaultHistory, initialPath}) => {
+const mount = (el, { onSignIn, onNavigate, defaultHistory, initialPath}) => {
   //We are gonna pass the history from here to the App
   //component
   //If we are having defaultHistory, we'll use that. 
@@ -27,7 +27,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath}) => {
   if(onNavigate)
     history.listen(onNavigate); 
 
-  ReactDom.render(<App history={history} />, el);
+  ReactDom.render(<App onSignIn={onSignIn} history={history} />, el);
 
   //To update memory history when browser history changes. 
 
