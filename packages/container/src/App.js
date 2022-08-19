@@ -19,6 +19,7 @@ import Progress from "./components/Progress";
 //Lazy loading.
 const MarketingLazy = lazy(() => import("./components/MarketingApp"));
 const AuthLazy = lazy(() => import("./components/AuthApp"));
+const DashboardLazy = lazy(() => import("./components/DashboardApp"));
 
 //Instead of creating classnames with jss, like jss1, jss2,
 //we are generating it as ma1, ma2 for the production site
@@ -50,6 +51,7 @@ export default () => {
               <Route path="/auth">
                 <AuthLazy onSignIn={() => setIsSignedIn(true)} />
               </Route>
+              <Route path="/dashboard" component={DashboardLazy} />
               <Route path="/" component={MarketingLazy} />
             </Switch>
           </Suspense>
